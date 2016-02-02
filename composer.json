@@ -1,0 +1,23 @@
+{
+    "name": "stevenbuehner/king-of-sat-scrapper",
+    "description": "Scrapps the  KingOfSat Website",
+    "require-dev": {
+        "socloz/goutte": "^1.0"
+    },
+    "authors": [
+        {
+            "name": "Steven Buehner",
+            "email": "buehner@me.com"
+        }
+    ],
+    "require": {
+        "data33/phpexcel-wrapper": "dev-master",
+        "symfony/console": "3.*"
+
+    },
+    "autoload": {
+        "psr-4": {
+            "StevenBuehner\\": "src/StevenBuehner"
+        }
+    }
+}
