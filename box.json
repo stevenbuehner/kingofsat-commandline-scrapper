@@ -9,8 +9,14 @@
     {
       "name": "*.php",
       "exclude": [
-        "Tests", "unitTests", "tests"
+        "Tests",
+        "unitTests",
+        "tests"
       ],
+      "in": "vendor"
+    },
+    {
+      "name": "LICENSE",
       "in": "vendor"
     }
   ],
