@@ -25,15 +25,15 @@ class KingofsatCommand extends Command {
             ->setDescription('Load from KingOfSat')
             ->addArgument('output-file',
                 InputArgument::REQUIRED,
-                'Dateipfad in welche die Ausgabe geschrieben werden soll.')
+                'Excel-Filepath to store the results in')
             ->addArgument('url',
                 InputArgument::IS_ARRAY,
-                'SubUrl to parse');
+                'SubUrl(s) to parse');
 
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) {
-        $subUrls = $input->getArgument('url');
+        $subUrls    = $input->getArgument('url');
         $outputFile = $input->getArgument('output-file');
 
 
@@ -66,7 +66,7 @@ class KingofsatCommand extends Command {
 
     protected function setupExcel($headlines) {
         $this->excel = new ExcelWrapper();
-        $this->excel->setTitle('Transponders');
+        $this->excel->setTitle('Extracted transponders');
         $this->excel->addRow($headlines, 'header');
     }
 
@@ -77,7 +77,11 @@ class KingofsatCommand extends Command {
     }
 
     protected function saveExcel($filename) {
-        $this->excel->save($filename);
+        // Add file Extension if is missing
+        $file_parts = pathinfo($filename);
+        if (!in_array($file_parts['extension'], [ 'xls', 'xlt', 'xlsx', 'xltx' ]))
+            $filename .= '.xls';
 
+        $this->excel->save($filename);
     }
 }

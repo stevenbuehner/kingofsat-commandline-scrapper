@@ -24,7 +24,7 @@ class KingOfSatScrapper {
 
     public function getTransponderData($subUrl) {
 
-        $url = $this->baseUrl . '/' . $subUrl;
+        $url     = $this->baseUrl . '/' . $subUrl;
         $crawler = $this->client->request('GET', $url);
 
         $tables = $crawler->filter('table.frq tr');
@@ -35,18 +35,18 @@ class KingOfSatScrapper {
 
             $transponder = [ ];
 
-            $transponder['Satelitenposition'] = $tds->eq(0)->text();
-            $transponder['Satelit'] = $tds->eq(1)->text();
-            $transponder['Frequenz'] = $tds->eq(2)->text();
-            $transponder['Polarisation'] = $tds->eq(3)->text();
-            $transponder['Transponder'] = $tds->eq(4)->text();
-            $transponder['Beam'] = $tds->eq(5)->text();
-            $transponder['Sendenorm'] = $tds->eq(6)->text();
-            $transponder['Modulation'] = $tds->eq(7)->text();
-            $transponder['Symbolate'] = $tds->eq(8)->text();
+            $transponder['Satelitenposition'] = trim($tds->eq(0)->text());
+            $transponder['Satelit']           = trim($tds->eq(1)->text());
+            $transponder['Frequenz']          = trim($tds->eq(2)->text());
+            $transponder['Polarisation']      = trim($tds->eq(3)->text());
+            $transponder['Transponder']       = trim($tds->eq(4)->text());
+            $transponder['Beam']              = trim($tds->eq(5)->text());
+            $transponder['Sendenorm']         = trim($tds->eq(6)->text());
+            $transponder['Modulation']        = trim($tds->eq(7)->text());
+            $transponder['Symbolate']         = trim($tds->eq(8)->text());
 
-            $provider = $tds->eq(9)->filter('b');
-            $transponder['Provider'] = (count($provider) > 0) ? $provider->text() : '';
+            $provider                = $tds->eq(9)->filter('b');
+            $transponder['Provider'] = (count($provider) > 0) ? trim($provider->text()) : '';
 
             $bitrate = trim($tds->eq(9)->filterXPath('td/text()')->text());
             if (strlen($bitrate) > 0) {
@@ -57,8 +57,8 @@ class KingOfSatScrapper {
                 }
             }
 
-            $transponder['Network ID'] = $tds->eq(10)->text();
-            $transponder['Transponder ID'] = $tds->eq(11)->text();
+            $transponder['Network ID']     = trim($tds->eq(10)->text());
+            $transponder['Transponder ID'] = trim($tds->eq(11)->text());
 
             return $transponder;
         });
