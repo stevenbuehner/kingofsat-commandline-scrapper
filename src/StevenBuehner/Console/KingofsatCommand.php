@@ -59,6 +59,8 @@ class KingofsatCommand extends Command {
             // Daten ausgeben
             $output->writeln('Generate Excelfile: ' . $outputFile);
             $this->saveExcel($outputFile);
+        } else {
+            $output->writeln('<error>Missing pages to Scrap. See help.</error>');
         }
 
         $output->writeln('<info>(c) Steven Buehner <buehner@me.com></info>');
