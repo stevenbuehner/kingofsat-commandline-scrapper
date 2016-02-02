@@ -61,6 +61,7 @@ class KingofsatCommand extends Command {
             $this->saveExcel($outputFile);
         }
 
+        $output->writeln('<info>(c) Steven Buehner <buehner@me.com></info>');
     }
 
     protected function setupExcel($headlines) {

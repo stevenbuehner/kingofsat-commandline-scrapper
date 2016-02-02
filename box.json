@@ -9,13 +9,13 @@
     {
       "name": "*.php",
       "exclude": [
-        "Tests"
+        "Tests", "unitTests", "tests"
       ],
       "in": "vendor"
     }
   ],
-  "git-version": "0.1",
-  "main": "bin/kingofsat",
+  "git-version": "package_version",
+  "main": "console.php",
   "output": "kingofsat.phar",
   "stub": true
 }
